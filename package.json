@@ -15,11 +15,17 @@
     "start": "cross-env NODE_OPTIONS=--no-deprecation next start",
     "test": "pnpm run test:int && pnpm run test:e2e",
     "test:e2e": "cross-env NODE_OPTIONS=\"--no-deprecation --no-experimental-strip-types\" pnpm exec playwright test",
-    "test:int": "cross-env NODE_OPTIONS=--no-deprecation vitest run --config ./vitest.config.mts"
+    "test:int": "cross-env NODE_OPTIONS=--no-deprecation vitest run --config ./vitest.config.mts",
+    "m:run": "pnpm payload migrate",
+    "m:create": "pnpm payload migrate:create",
+    "m:status": "pnpm payload migrate:status",
+    "m:fresh": "pnpm payload migrate:fresh"
   },
   "dependencies": {
+    "@payloadcms/db-postgres": "3.69.0",
     "@payloadcms/next": "3.69.0",
     "@payloadcms/richtext-lexical": "3.69.0",
+    "@payloadcms/storage-vercel-blob": "^3.69.0",
     "@payloadcms/ui": "3.69.0",
     "cross-env": "^7.0.3",
     "dotenv": "16.4.7",
@@ -28,8 +34,7 @@
     "payload": "3.69.0",
     "react": "19.2.1",
     "react-dom": "19.2.1",
-    "sharp": "0.34.2",
-    "@payloadcms/db-postgres": "3.69.0"
+    "sharp": "0.34.2"
   },
   "devDependencies": {
     "@playwright/test": "1.56.1",

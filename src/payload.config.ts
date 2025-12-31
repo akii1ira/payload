@@ -8,6 +8,8 @@ import { Users } from './collections/Users'
 import { Media } from './collections/Media'
 import { Projects } from './collections/Projects'
 import { HeaderSettings } from './collections/HeaderSettings'
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
+import { MediaWithPrefix } from './collections/MediaWithPrefix'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -19,7 +21,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Projects],
+  collections: [Users, Media, Projects, MediaWithPrefix],
   globals: [HeaderSettings],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
@@ -32,5 +34,13 @@ export default buildConfig({
     },
   }),
   sharp,
-  plugins: [],
+  plugins: [
+    (vercelBlobStorage as any)({
+      collections: {
+        media: true,
+        'media-with-prefix': { prefix: 'my-prefix' },
+      },
+      token: process.env.BLOB_READ_WRITE_TOKEN,
+    }),
+  ],
 })
