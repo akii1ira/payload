@@ -171,7 +171,9 @@ export interface Media {
  */
 export interface Project {
   id: number;
+  number: number;
   name: string;
+  description: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -298,7 +300,9 @@ export interface MediaSelect<T extends boolean = true> {
  * via the `definition` "projects_select".
  */
 export interface ProjectsSelect<T extends boolean = true> {
+  number?: T;
   name?: T;
+  description?: T;
   updatedAt?: T;
   createdAt?: T;
 }

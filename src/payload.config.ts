@@ -10,6 +10,7 @@ import { Projects } from './collections/Projects'
 import { HeaderSettings } from './collections/HeaderSettings'
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 
+
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
@@ -19,6 +20,7 @@ export default buildConfig({
     importMap: {
       baseDir: path.resolve(dirname),
     },
+    
   },
   collections: [Users, Media, Projects],
   globals: [HeaderSettings],
